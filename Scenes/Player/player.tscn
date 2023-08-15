@@ -1,53 +1,53 @@
 [gd_scene load_steps=19 format=3 uid="uid://35lqjwoi47ib"]
 
 [ext_resource type="Script" path="res://Scripts/PlatformarControler.cs" id="1_dk3pr"]
-[ext_resource type="Texture2D" uid="uid://bekipyjljod8g" path="res://Sprites/Virtual Guy/Idle (32x32).png" id="1_w6lx3"]
-[ext_resource type="Texture2D" uid="uid://eqt1udo5m647" path="res://Sprites/Bow.png" id="3_xlxco"]
+[ext_resource type="Texture2D" uid="uid://bekipyjljod8g" path="res://Asset/Sprites/Virtual Guy/Idle (32x32).png" id="2_8ydms"]
+[ext_resource type="Texture2D" uid="uid://eqt1udo5m647" path="res://Asset/Sprites/Bow.png" id="3_bg3eu"]
 [ext_resource type="Script" path="res://Scenes/Player/Bow.cs" id="4_lbf8k"]
 [ext_resource type="PackedScene" uid="uid://sd0wyesleqj7" path="res://Scenes/Object/arrow.tscn" id="5_up7jk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yl62r"]
-atlas = ExtResource("1_w6lx3")
+atlas = ExtResource("2_8ydms")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eruib"]
-atlas = ExtResource("1_w6lx3")
+atlas = ExtResource("2_8ydms")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptslb"]
-atlas = ExtResource("1_w6lx3")
+atlas = ExtResource("2_8ydms")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c5s84"]
-atlas = ExtResource("1_w6lx3")
+atlas = ExtResource("2_8ydms")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4mfu"]
-atlas = ExtResource("1_w6lx3")
+atlas = ExtResource("2_8ydms")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g5j28"]
-atlas = ExtResource("1_w6lx3")
+atlas = ExtResource("2_8ydms")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5be76"]
-atlas = ExtResource("1_w6lx3")
+atlas = ExtResource("2_8ydms")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_387xe"]
-atlas = ExtResource("1_w6lx3")
+atlas = ExtResource("2_8ydms")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aw3q7"]
-atlas = ExtResource("1_w6lx3")
+atlas = ExtResource("2_8ydms")
 region = Rect2(256, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5w0cy"]
-atlas = ExtResource("1_w6lx3")
+atlas = ExtResource("2_8ydms")
 region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q6yty"]
-atlas = ExtResource("1_w6lx3")
+atlas = ExtResource("2_8ydms")
 region = Rect2(320, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cgy45"]
@@ -111,10 +111,11 @@ zoom = Vector2(2, 2)
 
 [node name="Bow" type="Sprite2D" parent="."]
 position = Vector2(13, 6)
-texture = ExtResource("3_xlxco")
+texture = ExtResource("3_bg3eu")
 script = ExtResource("4_lbf8k")
+_diraction = Vector2(1, 0)
+_speed = 100.0
 _arrowPath = NodePath("Arrow")
-Vel = Vector2(70, -70)
 
 [node name="Arrow" parent="Bow" instance=ExtResource("5_up7jk")]
 position = Vector2(13, 0)

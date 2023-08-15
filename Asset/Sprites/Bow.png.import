@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuwieoo24shmp"
-path="res://.godot/imported/Fall (32x32).png-b55ad93032514363c21a458f0f974b78.ctex"
+uid="uid://eqt1udo5m647"
+path="res://.godot/imported/Bow.png-1c23d07bf3964b48b0de2cd492dbe577.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Virtual Guy/Fall (32x32).png"
-dest_files=["res://.godot/imported/Fall (32x32).png-b55ad93032514363c21a458f0f974b78.ctex"]
+source_file="res://Asset/Sprites/Bow.png"
+dest_files=["res://.godot/imported/Bow.png-1c23d07bf3964b48b0de2cd492dbe577.ctex"]
 
 [params]
 

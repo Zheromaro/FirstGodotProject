@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eqt1udo5m647"
-path="res://.godot/imported/Bow.png-2e372c0098797d6106e6e3767417e1ac.ctex"
+uid="uid://nsh5f37usbhm"
+path="res://.godot/imported/Sprite-0003.png-92c24378875ca87d737d6c8a5f346072.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Bow.png"
-dest_files=["res://.godot/imported/Bow.png-2e372c0098797d6106e6e3767417e1ac.ctex"]
+source_file="res://Asset/Sprites/Sprite-0003.png"
+dest_files=["res://.godot/imported/Sprite-0003.png-92c24378875ca87d737d6c8a5f346072.ctex"]
 
 [params]
 

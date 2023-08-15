@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drahqwmblv5qk"
-path="res://.godot/imported/Tileset.png-1a414b7107dec576154e767e32be6ae4.ctex"
+uid="uid://btuy5twhftygr"
+path="res://.godot/imported/icon.svg-0f0f812037fe9155e0cf0a269e61f700.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tileset.png"
-dest_files=["res://.godot/imported/Tileset.png-1a414b7107dec576154e767e32be6ae4.ctex"]
+source_file="res://Asset/Sprites/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-0f0f812037fe9155e0cf0a269e61f700.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

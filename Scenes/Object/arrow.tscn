@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://sd0wyesleqj7"]
 
 [ext_resource type="Script" path="res://Scripts/Arrow.cs" id="1_hbqgu"]
-[ext_resource type="Texture2D" uid="uid://nsh5f37usbhm" path="res://Sprites/Sprite-0003.png" id="2_xk8vi"]
+[ext_resource type="Texture2D" uid="uid://nsh5f37usbhm" path="res://Asset/Sprites/Sprite-0003.png" id="2_m61ld"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7xs6n"]
 radius = 2.0
@@ -11,7 +11,7 @@ script = ExtResource("1_hbqgu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-6, 0)
-texture = ExtResource("2_xk8vi")
+texture = ExtResource("2_m61ld")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7xs6n")

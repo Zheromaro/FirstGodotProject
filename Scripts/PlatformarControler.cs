@@ -14,11 +14,6 @@ public partial class PlatformarControler : CharacterBody2D
         _jumpForce = ((2 * _jumpHeight) / _jumpTimeToPeak) * -1;
         _jumpGravity = ((-2 * _jumpHeight) / Mathf.Pow(_jumpTimeToPeak, 2)) * -1;
         _fallGravity = ((-2 * _jumpHeight) / Mathf.Pow(_jumpTimeToDesand, 2)) * -1;
-
-        GD.Print("_jumpTimeToPeak : " + _jumpTimeToPeak);
-        GD.Print("_jumpForce: " + _jumpForce);
-        GD.Print("_jumpGravity: " + _jumpGravity);
-        GD.Print("_fallGravity: " + _fallGravity);
     }
 
     private void GatherRequirements()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nsh5f37usbhm"
-path="res://.godot/imported/Sprite-0003.png-a57987ab30c3ac4e54f210a80d13e8a7.ctex"
+uid="uid://cuwieoo24shmp"
+path="res://.godot/imported/Fall (32x32).png-6161a57a09b7319cf0902a8f90798845.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Sprite-0003.png"
-dest_files=["res://.godot/imported/Sprite-0003.png-a57987ab30c3ac4e54f210a80d13e8a7.ctex"]
+source_file="res://Asset/Sprites/Virtual Guy/Fall (32x32).png"
+dest_files=["res://.godot/imported/Fall (32x32).png-6161a57a09b7319cf0902a8f90798845.ctex"]
 
 [params]
 
