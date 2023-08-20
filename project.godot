@@ -15,9 +15,17 @@ run/main_scene="res://Scenes/Levels/level.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[aseprite_importers]
+
+aseprite_executable_path="C:/Program Files/Aseprite/bin/aseprite.exe"
+
 [dotnet]
 
 project/assembly_name="ArrowPlatformer"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/nklbdev.aseprite_importers/plugin.cfg")
 
 [input]
 

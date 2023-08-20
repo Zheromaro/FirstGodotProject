@@ -1,121 +1,35 @@
-[gd_scene load_steps=19 format=3 uid="uid://35lqjwoi47ib"]
+[gd_scene load_steps=5 format=3 uid="uid://csi0klcsr0i80"]
 
-[ext_resource type="Script" path="res://Scripts/PlatformarControler.cs" id="1_dk3pr"]
-[ext_resource type="Texture2D" uid="uid://bekipyjljod8g" path="res://Asset/Sprites/Virtual Guy/Idle (32x32).png" id="2_8ydms"]
-[ext_resource type="Texture2D" uid="uid://eqt1udo5m647" path="res://Asset/Sprites/Bow.png" id="3_bg3eu"]
-[ext_resource type="Script" path="res://Scenes/Player/Bow.cs" id="4_lbf8k"]
-[ext_resource type="PackedScene" uid="uid://sd0wyesleqj7" path="res://Scenes/Object/arrow.tscn" id="5_up7jk"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerStateMachine.cs" id="1_fhge6"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yl62r"]
-atlas = ExtResource("2_8ydms")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aphwy"]
+size = Vector2(21, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eruib"]
-atlas = ExtResource("2_8ydms")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_1d327"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ptslb"]
-atlas = ExtResource("2_8ydms")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c5s84"]
-atlas = ExtResource("2_8ydms")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s4mfu"]
-atlas = ExtResource("2_8ydms")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g5j28"]
-atlas = ExtResource("2_8ydms")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5be76"]
-atlas = ExtResource("2_8ydms")
-region = Rect2(192, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_387xe"]
-atlas = ExtResource("2_8ydms")
-region = Rect2(224, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aw3q7"]
-atlas = ExtResource("2_8ydms")
-region = Rect2(256, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5w0cy"]
-atlas = ExtResource("2_8ydms")
-region = Rect2(288, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q6yty"]
-atlas = ExtResource("2_8ydms")
-region = Rect2(320, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_cgy45"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yl62r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eruib")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ptslb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c5s84")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s4mfu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g5j28")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5be76")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_387xe")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aw3q7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5w0cy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q6yty")
-}],
-"loop": false,
-"name": &"default",
-"speed": 10.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wyqi7"]
-size = Vector2(20, 24)
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_s2fc3"]
+nodes/Transition/node = SubResource("AnimationNodeTransition_1d327")
+nodes/Transition/position = Vector2(820, 140)
+nodes/output/position = Vector2(980, 180)
+node_connections = [&"output", 0, &"Transition"]
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_dk3pr")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_cgy45")
-frame = 10
-frame_progress = 1.0
+script = ExtResource("1_fhge6")
+_spriteNodePath = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_wyqi7")
+position = Vector2(0.5, 4)
+shape = SubResource("RectangleShape2D_aphwy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+position = Vector2(0, 2)
 
-[node name="Bow" type="Sprite2D" parent="."]
-position = Vector2(13, 6)
-texture = ExtResource("3_bg3eu")
-script = ExtResource("4_lbf8k")
-_diraction = Vector2(1, 0)
-_speed = 100.0
-_arrowPath = NodePath("Arrow")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
-[node name="Arrow" parent="Bow" instance=ExtResource("5_up7jk")]
-position = Vector2(13, 0)
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_s2fc3")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/Transition/current_state = ""
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = -1
