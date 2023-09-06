@@ -1,6 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://csi0klcsr0i80"]
+[gd_scene load_steps=19 format=3 uid="uid://csi0klcsr0i80"]
 
-[ext_resource type="Script" path="res://Scripts/Player/PlayerStateMachine.cs" id="1_fhge6"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerInstance.cs" id="1_51lrc"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="2_0lre6"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_8n0mq"]
+[ext_resource type="Texture2D" uid="uid://bekipyjljod8g" path="res://Asset/Sprites/Virtual Guy/Idle (32x32).png" id="2_ec55m"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_bnu61"]
+[ext_resource type="Script" path="res://Scenes/Player/Sprite2Doo.gd" id="3_o5sqy"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_ny54u"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_0jpij"]
+[ext_resource type="Script" path="res://Scripts/Player/States/Grounded/ComponentMove.cs" id="7_ay0ut"]
+[ext_resource type="Script" path="res://Scripts/Player/States/Grounded/ComponentGrounded.cs" id="7_chh1x"]
+[ext_resource type="Script" path="res://Scripts/Player/States/Grounded/ComponentIdel.cs" id="11_hkjvf"]
+[ext_resource type="Script" path="res://Scripts/Player/States/AirBound/ComponentAirBoundIdel.cs" id="11_xskps"]
+[ext_resource type="Script" path="res://Scripts/Player/States/AirBound/ComponentJump.cs" id="12_is6em"]
+[ext_resource type="Script" path="res://Scripts/Player/States/AirBound/ComponentFall.cs" id="13_bporp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aphwy"]
 size = Vector2(21, 24)
@@ -13,9 +26,27 @@ nodes/Transition/position = Vector2(820, 140)
 nodes/output/position = Vector2(980, 180)
 node_connections = [&"output", 0, &"Transition"]
 
+[sub_resource type="GDScript" id="GDScript_7fb78"]
+script/source = "@tool
+@icon(\"atomic_state.svg\")
+## This is a state that has no sub-states.
+class_name AtomicState
+extends State
+
+func _handle_transition(transition:Transition, source:State):
+	# resolve the target state
+	var target = transition.resolve_target()
+	if not target is State:
+		push_error(\"The target state '\" + str(transition.to) + \"' of the transition from '\" + source.name + \"' is not a state.\")
+		return
+	# atomic states cannot transition, so we need to ask the parent
+	# ask the parent
+	get_parent()._handle_transition(transition, source)
+"
+
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_fhge6")
-_spriteNodePath = NodePath("")
+script = ExtResource("1_51lrc")
+_stateChartPath = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 4)
@@ -23,6 +54,11 @@ shape = SubResource("RectangleShape2D_aphwy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ec55m")
+hframes = 11
+script = ExtResource("3_o5sqy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -33,3 +69,119 @@ active = true
 parameters/Transition/current_state = ""
 parameters/Transition/transition_request = ""
 parameters/Transition/current_index = -1
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_8n0mq")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("2_0lre6")
+
+[node name="Grounded" type="Node" parent="StateChart/Root"]
+script = ExtResource("3_bnu61")
+initial_state = NodePath("Idel")
+
+[node name="Component grounded" type="Node" parent="StateChart/Root/Grounded"]
+script = ExtResource("7_chh1x")
+UseRawInput = true
+
+[node name="Idel" type="Node" parent="StateChart/Root/Grounded"]
+script = ExtResource("4_ny54u")
+
+[node name="Component  Idel" type="Node" parent="StateChart/Root/Grounded/Idel"]
+script = ExtResource("11_hkjvf")
+GroundedPath = NodePath("../../Component grounded")
+_toMove = "To Move"
+
+[node name="To move" type="Node" parent="StateChart/Root/Grounded/Idel"]
+script = ExtResource("5_0jpij")
+to = NodePath("../../Move")
+event = &"To Move"
+
+[node name="Move" type="Node" parent="StateChart/Root/Grounded"]
+script = ExtResource("4_ny54u")
+
+[node name="Component Move" type="Node" parent="StateChart/Root/Grounded/Move"]
+script = ExtResource("7_ay0ut")
+GroundedPath = NodePath("../../Component grounded")
+_toIdel = "To Idel"
+
+[node name="To idel" type="Node" parent="StateChart/Root/Grounded/Move"]
+script = ExtResource("5_0jpij")
+to = NodePath("../../Idel")
+event = &"To Idel"
+
+[node name="AirBound" type="Node" parent="StateChart/Root"]
+script = ExtResource("3_bnu61")
+initial_state = NodePath("Fall")
+
+[node name="Idel" type="Node" parent="StateChart/Root/AirBound"]
+script = SubResource("GDScript_7fb78")
+
+[node name="Component idel" type="Node" parent="StateChart/Root/AirBound/Idel"]
+script = ExtResource("11_xskps")
+
+[node name="To fall" type="Node" parent="StateChart/Root/AirBound/Idel"]
+script = ExtResource("5_0jpij")
+to = NodePath("../../Fall")
+
+[node name="To jump" type="Node" parent="StateChart/Root/AirBound/Idel"]
+script = ExtResource("5_0jpij")
+to = NodePath("../../Jump")
+
+[node name="Jump" type="Node" parent="StateChart/Root/AirBound"]
+script = ExtResource("4_ny54u")
+
+[node name="Component jump" type="Node" parent="StateChart/Root/AirBound/Jump"]
+script = ExtResource("12_is6em")
+
+[node name="To fall" type="Node" parent="StateChart/Root/AirBound/Jump"]
+script = ExtResource("5_0jpij")
+to = NodePath("../../Fall")
+
+[node name="Fall" type="Node" parent="StateChart/Root/AirBound"]
+script = ExtResource("4_ny54u")
+
+[node name="Component  fall" type="Node" parent="StateChart/Root/AirBound/Fall"]
+script = ExtResource("13_bporp")
+
+[node name="To Nothing" type="Node" parent="StateChart/Root/AirBound/Fall"]
+script = ExtResource("5_0jpij")
+to = NodePath("../../Idel")
+
+[node name="Bow" type="Node" parent="StateChart/Root"]
+script = ExtResource("3_bnu61")
+initial_state = NodePath("Nothing")
+
+[node name="Nothing" type="Node" parent="StateChart/Root/Bow"]
+script = ExtResource("4_ny54u")
+
+[node name="Component Nothing" type="Node" parent="StateChart/Root/Bow/Nothing"]
+
+[node name="To Hold" type="Node" parent="StateChart/Root/Bow/Nothing"]
+script = ExtResource("5_0jpij")
+to = NodePath("../../Hold")
+
+[node name="Hold" type="Node" parent="StateChart/Root/Bow"]
+script = ExtResource("4_ny54u")
+
+[node name="Component hold" type="Node" parent="StateChart/Root/Bow/Hold"]
+
+[node name="To shoot" type="Node" parent="StateChart/Root/Bow/Hold"]
+script = ExtResource("5_0jpij")
+to = NodePath("../../Shoot")
+
+[node name="Shoot" type="Node" parent="StateChart/Root/Bow"]
+script = ExtResource("4_ny54u")
+
+[node name="Component shoot" type="Node" parent="StateChart/Root/Bow/Shoot"]
+
+[node name="To nothing" type="Node" parent="StateChart/Root/Bow/Shoot"]
+script = ExtResource("5_0jpij")
+to = NodePath("../../Nothing")
+
+[connection signal="state_processing" from="StateChart/Root/Grounded/Idel" to="StateChart/Root/Grounded/Idel/Component  Idel" method="_StateProcessing"]
+[connection signal="state_physics_processing" from="StateChart/Root/Grounded/Move" to="StateChart/Root/Grounded/Move/Component Move" method="_StatePhysicsProcessing"]
+[connection signal="state_processing" from="StateChart/Root/Grounded/Move" to="StateChart/Root/Grounded/Move/Component Move" method="_StatePhysicsProcessing"]
+[connection signal="state_processing" from="StateChart/Root/AirBound/Idel" to="StateChart/Root/AirBound/Idel/Component idel" method="_StateProcessing"]
+[connection signal="state_physics_processing" from="StateChart/Root/AirBound/Jump" to="StateChart/Root/AirBound/Jump/Component jump" method="_StatePhysicsProcessing"]
+[connection signal="state_physics_processing" from="StateChart/Root/AirBound/Fall" to="StateChart/Root/AirBound/Fall/Component  fall" method="_StatePhysicsProcessing"]
