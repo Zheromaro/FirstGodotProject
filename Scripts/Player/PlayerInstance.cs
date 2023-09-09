@@ -11,16 +11,14 @@ namespace Scripts.Player
 
         public override void _Ready()
         {
-            if (Player != null && Player != this)
-            {
-                QueueFree();
-            }
-            else
-            {
                 Player = this;
-            }
 
             _stateChart = GetNode<Node>(_stateChartPath);
+        }
+
+        public override void _PhysicsProcess(double delta)
+        {
+            MoveAndSlide();
         }
 
         public void SwitchState(string eventName)

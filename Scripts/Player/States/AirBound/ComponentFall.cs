@@ -11,6 +11,7 @@ namespace Scripts.Player.States
         [Export] private float _terminalVelocity = 1000; // normaly the more he fall the faster he becomes, so this is the speed limits
         private float _fallGravity;
         private float _previousVelocityY, _newVelocityY;
+        private Vector2 _calculateVelocity;
 
         [ExportGroup("EventNames")]
         [Export] private string _toIdel;
@@ -22,7 +23,9 @@ namespace Scripts.Player.States
 
         public void _StatePhysicsProcessing(float delta)
         {
-            //ApplyJumpGravity(delta);
+            _calculateVelocity = PlayerInstance.Player.Velocity;
+            ApplyJumpGravity(ref _calculateVelocity ,delta);
+            PlayerInstance.Player.Velocity = _calculateVelocity;
 
             if (PlayerInstance.Player.IsOnFloor())
                 PlayerInstance.Player.SwitchState(_toIdel);

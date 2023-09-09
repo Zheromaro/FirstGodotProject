@@ -3,7 +3,7 @@ using System;
 
 namespace Scripts.StateMachine
 {
-	public partial class _Transition : Stat
+	public partial class Transition : Node
 	{
 		public float delay_seconds;
 

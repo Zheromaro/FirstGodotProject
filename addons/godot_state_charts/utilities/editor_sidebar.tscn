@@ -23,6 +23,7 @@ script = ExtResource("1_7kcy8")
 
 [node name="AddSection" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="AddLabel" type="Label" parent="AddSection"]
@@ -106,7 +107,6 @@ icon_alignment = 1
 
 [node name="NoOptionsLabel" type="Label" parent="."]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 0

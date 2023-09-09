@@ -10,12 +10,18 @@ namespace Scripts.Player.States
         [Export] private string _toJump;
         [Export] private string _toFall;
 
-        public void _StateProcessing()
+        public void _StateProcessing(float delta)
         {
-            if (Input.IsActionJustPressed(InputNames.Jump))
-                PlayerInstance.Player.SwitchState(_toJump);
-            else if (PlayerInstance.Player.IsOnFloor() == false)
+            if (PlayerInstance.Player.IsOnFloor() == false)
+            {
                 PlayerInstance.Player.SwitchState(_toFall);
+            }
+
+            if (Input.IsActionJustPressed(InputNames.Jump))
+            {
+                PlayerInstance.Player.SwitchState(_toJump);
+            }
+            
         }
 
     }
