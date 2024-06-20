@@ -1,144 +1,187 @@
-[gd_scene load_steps=17 format=3 uid="uid://csi0klcsr0i80"]
+[gd_scene load_steps=26 format=3 uid="uid://bo64stuyvcbb7"]
 
-[ext_resource type="Script" path="res://Scripts/Player/PlayerInstance.cs" id="1_c0fgj"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_ddflm"]
-[ext_resource type="Texture2D" uid="uid://bekipyjljod8g" path="res://Asset/Sprites/Virtual Guy/Idle (32x32).png" id="2_ec55m"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="3_81ccr"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="4_vmbfw"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="5_i77k5"]
-[ext_resource type="Script" path="res://Scripts/Player/States/Grounded/ComponentGrounded.cs" id="5_ujkhm"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="6_oqymb"]
-[ext_resource type="Script" path="res://Scripts/Player/States/Grounded/ComponentIdel.cs" id="7_rixdy"]
-[ext_resource type="Script" path="res://Scripts/Player/States/Grounded/ComponentMove.cs" id="9_a8wco"]
-[ext_resource type="Script" path="res://Scripts/Player/States/AirBound/ComponentAirBoundIdel.cs" id="11_ydmcn"]
-[ext_resource type="Script" path="res://Scripts/Player/States/AirBound/ComponentJump.cs" id="12_y77xq"]
-[ext_resource type="Script" path="res://Scripts/Player/States/AirBound/ComponentFall.cs" id="13_ixmv1"]
+[ext_resource type="Texture2D" uid="uid://0i24v08ybtba" path="res://Asset/sprites/knight.png" id="1_7c0nx"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_r0yi4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aphwy"]
-size = Vector2(21, 24)
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl6am"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_1d327"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7a4su"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_s2fc3"]
-nodes/Transition/node = SubResource("AnimationNodeTransition_1d327")
-nodes/Transition/position = Vector2(820, 140)
-nodes/output/position = Vector2(980, 180)
-node_connections = [&"output", 0, &"Transition"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0sfu"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3e0dq"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2fuw"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(32, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4piiu"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xrw8"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lm2x6"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbvrt"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cy3tx"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s45su"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(160, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkadc"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(192, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfyf3"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(224, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnrin"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4eiq"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7v0ol"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0xfn"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0ym6"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs513"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(160, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wctv"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(192, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30lm5"]
+atlas = ExtResource("1_7c0nx")
+region = Rect2(224, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j1vf3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl6am")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7a4su")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0sfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3e0dq")
+}],
+"loop": true,
+"name": &"idel",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2fuw")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4piiu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xrw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lm2x6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbvrt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cy3tx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s45su")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkadc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfyf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnrin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4eiq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7v0ol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0xfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0ym6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs513")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wctv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30lm5")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cml4i"]
+radius = 5.0
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_c0fgj")
-_stateChartPath = NodePath("StateChart")
+collision_layer = 2
+script = ExtResource("1_r0yi4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 5
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_j1vf3")
+animation = &"jump"
+autoplay = "idel"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 4)
-shape = SubResource("RectangleShape2D_aphwy")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 2)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_ec55m")
-hframes = 11
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeBlendTree_s2fc3")
-anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/Transition/current_state = ""
-parameters/Transition/transition_request = ""
-parameters/Transition/current_index = -1
-
-[node name="StateChart" type="Node" parent="."]
-script = ExtResource("2_ddflm")
-
-[node name="Root" type="Node" parent="StateChart"]
-script = ExtResource("3_81ccr")
-
-[node name="Grounded" type="Node" parent="StateChart/Root"]
-script = ExtResource("4_vmbfw")
-initial_state = NodePath("Idel")
-
-[node name="Component Grounded" type="Node" parent="StateChart/Root/Grounded"]
-script = ExtResource("5_ujkhm")
-
-[node name="Idel" type="Node" parent="StateChart/Root/Grounded"]
-script = ExtResource("5_i77k5")
-
-[node name="Component Idel" type="Node" parent="StateChart/Root/Grounded/Idel"]
-script = ExtResource("7_rixdy")
-GroundedPath = NodePath("../../Component Grounded")
-_toMove = "To move"
-
-[node name="To Move" type="Node" parent="StateChart/Root/Grounded/Idel"]
-script = ExtResource("6_oqymb")
-to = NodePath("../../Move")
-event = &"To move"
-
-[node name="Move" type="Node" parent="StateChart/Root/Grounded"]
-script = ExtResource("5_i77k5")
-
-[node name="Component Move" type="Node" parent="StateChart/Root/Grounded/Move"]
-script = ExtResource("9_a8wco")
-GroundedPath = NodePath("../../Component Grounded")
-_toIdel = "To Idel"
-
-[node name="To idel" type="Node" parent="StateChart/Root/Grounded/Move"]
-script = ExtResource("6_oqymb")
-to = NodePath("../../Idel")
-event = &"To idel"
-
-[node name="Airbound" type="Node" parent="StateChart/Root"]
-script = ExtResource("4_vmbfw")
-initial_state = NodePath("Idel")
-
-[node name="Idel" type="Node" parent="StateChart/Root/Airbound"]
-script = ExtResource("5_i77k5")
-
-[node name="Component Idel" type="Node" parent="StateChart/Root/Airbound/Idel"]
-script = ExtResource("11_ydmcn")
-_toJump = "To jump"
-_toFall = "To fall"
-
-[node name="To jump" type="Node" parent="StateChart/Root/Airbound/Idel"]
-script = ExtResource("6_oqymb")
-to = NodePath("../../Jump")
-event = &"To jump"
-
-[node name="To fall" type="Node" parent="StateChart/Root/Airbound/Idel"]
-script = ExtResource("6_oqymb")
-to = NodePath("../../Fall")
-event = &"To fall"
-
-[node name="Jump" type="Node" parent="StateChart/Root/Airbound"]
-script = ExtResource("5_i77k5")
-
-[node name="Component Jump" type="Node" parent="StateChart/Root/Airbound/Jump"]
-script = ExtResource("12_y77xq")
-_toFall = "To fall"
-
-[node name="To fall" type="Node" parent="StateChart/Root/Airbound/Jump"]
-script = ExtResource("6_oqymb")
-to = NodePath("../../Fall")
-event = &"To fall"
-
-[node name="Fall" type="Node" parent="StateChart/Root/Airbound"]
-script = ExtResource("5_i77k5")
-
-[node name="Component Fall" type="Node" parent="StateChart/Root/Airbound/Fall"]
-script = ExtResource("13_ixmv1")
-_toIdel = "To idel"
-
-[node name="To idel" type="Node" parent="StateChart/Root/Airbound/Fall"]
-script = ExtResource("6_oqymb")
-to = NodePath("../../Idel")
-event = &"To idel"
-
-[connection signal="state_processing" from="StateChart/Root/Grounded/Idel" to="StateChart/Root/Grounded/Idel/Component Idel" method="_StateProcessing"]
-[connection signal="state_physics_processing" from="StateChart/Root/Grounded/Move" to="StateChart/Root/Grounded/Move/Component Move" method="_StatePhysicsProcessing"]
-[connection signal="state_processing" from="StateChart/Root/Grounded/Move" to="StateChart/Root/Grounded/Move/Component Move" method="_StateProcessing"]
-[connection signal="state_processing" from="StateChart/Root/Airbound/Idel" to="StateChart/Root/Airbound/Idel/Component Idel" method="_StateProcessing"]
-[connection signal="state_entered" from="StateChart/Root/Airbound/Jump" to="StateChart/Root/Airbound/Jump/Component Jump" method="_StateEntered"]
-[connection signal="state_physics_processing" from="StateChart/Root/Airbound/Jump" to="StateChart/Root/Airbound/Jump/Component Jump" method="_StatePhysicsProcessing"]
-[connection signal="state_physics_processing" from="StateChart/Root/Airbound/Fall" to="StateChart/Root/Airbound/Fall/Component Fall" method="_StatePhysicsProcessing"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_cml4i")
